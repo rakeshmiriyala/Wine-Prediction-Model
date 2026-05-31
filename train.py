@@ -34,7 +34,7 @@ def main():
     if not os.path.exists(args.csv):
         raise SystemExit(f"CSV not found: {args.csv}. Create or copy wine_sample.csv next to this script.")
     df = pd.read_csv(args.csv)
-
+    df.columns = df.columns.str.strip().str.replace(" ", "_")
     if args.target not in df.columns:
         raise SystemExit(f"Target column '{args.target}' not found in CSV. Columns: {list(df.columns)}")
 
